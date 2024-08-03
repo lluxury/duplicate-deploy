@@ -1,12 +1,12 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: the-service
+  name: no-service
 spec:
   selector:
-    deployment: hello
-  type: LoadBalancer
+    only_template: hello
+  # type: LoadBalancer
   ports:
   - protocol: TCP
-    port: 8666
+    port: 6666
     targetPort: 8080

@@ -16,12 +16,18 @@ curl -s -o "$BASE/#1.yaml" "https://raw.githubusercontent.com\
 tree $DEMO_HOME
 /home/yann/hello
 └── base
-    ├── configMap.yaml
-    ├── deployment.yaml
-    ├── kustomization.yaml
-    └── service.yaml
+    ├── configMap.yaml  x
+    ├── deployment.yaml  c
+    ├── kustomization.yaml c
+    └── service.yaml c
 
-#### first step follow example
+~~add some comments to avoid people forget to setup value~~
+
+add some comments to ensure set up the value parameter
+
+
+
+#### Second step change examples
 
 ~~~bash
 kustomize build $BASE
@@ -35,12 +41,16 @@ build and temporary modify build, work
 
 
 ~~~bash
-OVERLAYS=$DEMO_HOME/overlays
-mkdir -p $OVERLAYS/staging
-mkdir -p $OVERLAYS/production
+# OVERLAYS=$DEMO_HOME/overlays
+OVERLAYS=$DEMO_HOME/exx-s
+mkdir -p $OVERLAYS/dev
+mkdir -p $OVERLAYS/cert
+mkdir -p $OVERLAYS/prod
 ~~~
 
 parallel with base
+
+when I make snip ,I would change variable 
 
 
 
