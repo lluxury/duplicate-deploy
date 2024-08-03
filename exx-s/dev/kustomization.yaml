@@ -1,0 +1,9 @@
+nameSuffix: -dev
+commonLabels:
+  app: exx-s
+commonAnnotations:
+  note: Hello, I am dev!
+resources:
+- ../../base
+patches:
+- path: deployment.yaml

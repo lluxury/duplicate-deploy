@@ -1,0 +1,6 @@
+kind: Deployment
+metadata:
+  # name: no-deployment , change failed
+  name: no-deployment  
+spec:
+  replicas: 1

@@ -1,0 +1,9 @@
+nameSuffix: -prod
+commonLabels:
+  app: exx-s
+commonAnnotations:
+  note: Hello, I am production!
+resources:
+- ../../base
+patches:
+- path: deployment.yaml

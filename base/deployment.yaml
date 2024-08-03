@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: xx
   labels:
     app: only_template
   name: no-deployment
@@ -15,7 +14,7 @@ spec:
       labels:
         app: only_template
     spec:
-      serviceAccountName: dev-xx-role
+      # serviceAccountName: dev-xx-role
       containers:
       - image: monopole/hello:1
         name: no-container

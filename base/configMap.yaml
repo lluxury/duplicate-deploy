@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: no-map
+  name: the-map
 data:
   altGreeting: "Good Morning!"
   enableRisky: "false"

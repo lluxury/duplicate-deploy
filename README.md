@@ -33,7 +33,9 @@ add some comments to ensure set up the value parameter
 kustomize build $BASE
 sed -i.bak 's/app: hello/app: my-hello/' \
     $BASE/kustomization.yaml
-kustomize build $BASE | grep -C 3 app:    
+kustomize build $BASE | grep -C 3 app:   
+
+ kubectl -n xx describe po -l app=no_set   # working when changing tag and command
 ~~~
 
 build and temporary modify build, work
@@ -54,24 +56,53 @@ when I make snip ,I would change variable
 
 
 
+big error, return archive, directory,file
+
+1. change directory
+
+
+
+~~~bash
+ kustomize build exx-s/production/ # working
+ kustomize build exx-s/prod/ # working
+~~~
+
+
+
+
+
 ###### create template file
 
 this step could be finish by snip
 
 ~~~bash
-cat <<'EOF' >$OVERLAYS/staging/kustomization.yaml
-namePrefix: staging-
+cat <<'EOF' >$OVERLAYS/dev/kustomization.yaml
+nameSuffix: -dev
 commonLabels:
-  variant: staging
-  org: acmeCorporation
+  app: exx-s
 commonAnnotations:
-  note: Hello, I am staging!
+  note: Hello, I am dev!
 resources:
 - ../../base
 patches:
-- path: map.yaml
+- path: deployment.yaml
 EOF
 ~~~
+
+
+
+~~~bash
+cat <<EOF >$OVERLAYS/dev/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exx-s
+spec:
+  replicas: 1
+EOF
+~~~
+
+
 
 
 
@@ -148,5 +179,17 @@ kustomize build $OVERLAYS/staging |\
 
 kustomize build $OVERLAYS/production |\
    kubectl apply -f -
+~~~
+
+
+
+###### error message
+
+~~~bash
+ Error creating: pods "no-deployment-6854b4c4f7-" is forbidden: error looking up service account xx/dev-xx-role: serviceaccount "dev-xx-role" not found
+ no message,no work
+
+  namespace: xx  # ns is not support
+  name: the-deployment # name is not support changes
 ~~~
 
