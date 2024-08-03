@@ -1,12 +1,15 @@
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
+  namespace: xx
+  labels:
+    app: only_template  
   name: no-service
 spec:
   selector:
-    only_template: hello
+    app: only_template
   # type: LoadBalancer
   ports:
-  - protocol: TCP
-    port: 6666
+  - port: 6666
     targetPort: 8080
+    protocol: TCP

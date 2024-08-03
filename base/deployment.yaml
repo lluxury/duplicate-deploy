@@ -1,24 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: xx
+  labels:
+    app: only_template
   name: no-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      only_template: hello
+      app: only_template
   template:
     metadata:
       labels:
-        only_template: hello
+        app: only_template
     spec:
+      serviceAccountName: dev-xx-role
       containers:
-      - name: no-container
-        image: monopole/hello:1
+      - image: monopole/hello:1
+        name: no-container
         command: [/bin/bash, -c, 'sleep infinity']
         # command: ["/hello",
         #           "--port=8080",
         #           "--enableRiskyFeature=$(ENABLE_RISKY)"]
+        env:
+          - name: env1
+            value: xx        
         ports:
         - containerPort: 8080
         # env:
