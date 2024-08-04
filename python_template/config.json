@@ -1,0 +1,12 @@
+{
+    "server_name": "web-server",
+    "server_role": "frontend",
+    "server_ip": "192.168.1.10",
+    "gateway_ip": "192.168.1.1",
+    "nginx_enabled": true,
+    "postgres_enabled": false,
+    "env_vars": {
+      "ENV_VAR1": "value1",
+      "ENV_VAR2": "value2"
+    }
+  }

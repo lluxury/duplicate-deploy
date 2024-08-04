@@ -1,0 +1,21 @@
+# template.yaml
+
+server:
+  name: {{ server_name }}
+  role: {{ server_role }}
+
+network:
+  ip: {{ server_ip }}
+  gateway: {{ gateway_ip }}
+
+services:
+  - name: nginx
+    port: 80
+    enabled: {{ nginx_enabled }}
+
+  - name: postgres
+    port: 5432
+    enabled: {{ postgres_enabled }}
+
+env:
+  {{ env_vars }}
