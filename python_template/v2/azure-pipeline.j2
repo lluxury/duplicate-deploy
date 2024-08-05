@@ -1,0 +1,45 @@
+# azure-pipeline.j2
+
+trigger:
+  branches:
+    include:
+      - {{ branches | join(', ') }}
+
+jobs:
+  - job: build_and_test
+    displayName: 'Build and Test'
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    steps:
+      {% for step in build_steps %}
+      - script: {{ step.command }}
+        displayName: '{{ step.display_name }}'
+      {% endfor %}
+
+{% if deploy_to_production %}
+  - job: deploy_to_production
+    displayName: 'Deploy to Production'
+    pool:
+      vmImage: 'ubuntu-latest'
+    dependsOn: build_and_test
+
+    steps:
+      - script: echo Deploying to production
+        displayName: 'Deploy'
+{% endif %}
+
+variables:
+  - name: imageName
+    value: '{{ imageName }}'
+
+  - group: SonarQubeCredentials
+
+  - name: helmChartPath
+    value: '{{ helmChartPath }}'
+
+  {% for key, value in additional_variables.items() %}
+  - name: {{ key }}
+    value: {{ value | tojson }}
+  {% endfor %}
+

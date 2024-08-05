@@ -193,3 +193,6 @@ kustomize build $OVERLAYS/production |\
   name: the-deployment # name is not support changes
 ~~~
 
+
+j2脚本测试:
+https://github.com/perfide/render-jinja-with-yaml?tab=readme-ov-file#readme
